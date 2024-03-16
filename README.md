@@ -23,3 +23,6 @@ Below is a list of what currently is implemented. Please suggest improvements by
       next_line_of_subitem2
   - item2
   ```
+- Partially implemented: converting code blocks. Replaces `{CODE()}` and  `{CODE}` with `\`\`\``. Correct indentation (if part of a (bullet) list) is not implemented yet, and newlines aren't always inserted correctly.
+- Replaces `[[` with `[`
+- Converts bold text by replacing `__` with `**`. Tiki: `text can be __bold__`, MD: `text can be **bold**`
