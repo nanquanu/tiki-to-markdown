@@ -44,7 +44,27 @@ for i in range(lines_count):
     lines[i] = lines[i].replace('[[', '[').replace("__", "**").replace("{CODE}", "\n```").replace("{CODE()}", "```\n")
     # TODO: If a code block starts with indentation, the indentation should be added for every line of the code block in Markdown.
     # TODO: Make sure closing code blocks always happens on a newline
-        
+
+# TODO: add conversion of tables. An example:
+
+'''
+
+|------------------------------------------------------------------------------|
+| **Initiating author** | DrOteonu                                             |
+| **Conceived by**      | DrOteonu (around May, 2024)                          |
+| **Start date**        |                                                      |
+| **Contributers**      | Kemueira, DrOteonu (DrO), Aeduin, [TODO finish list] |
+
+<!-- Original tiki format:
+||**Initiating author**|DrOteonu
+**Conceived by**|DrOteonu (around May, 2024)
+**Start date**|
+**Contributers**|Kemueira, DrOteonu (DrO), Aeduin, [TODO finish list]
+||
+-->
+
+'''
+
 if os.path.splitext(file_name)[1].lower()[1:] == "tiki":
     new_file_name = file_name.replace('.tiki', '.md')
 else:
