@@ -37,7 +37,7 @@ for i in range(lines_count):
     elif (match := re.match('^\*+', lines[i])) is not None:
         lines[i] = "  " * (match.end() - match.start() - 1) + "-" + (" " if lines[i][match.end()] != " " else "") + lines[i][match.end():]
     elif (match := re.match('^\#+', lines[i])) is not None: # numbered list 
-        lines[i] = "  " * (match.end() - match.start() - 1) + "1." + (" " if lines[i][match.end()] != " " else "") + lines[i][match.end():]
+        lines[i] = "   " * (match.end() - match.start() - 1) + "1." + (" " if lines[i][match.end()] != " " else "") + lines[i][match.end():]
 
 
 for i in range(lines_count):
