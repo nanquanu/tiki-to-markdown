@@ -41,7 +41,7 @@ for i in range(lines_count):
 
 
 for i in range(lines_count):
-    lines[i] = lines[i].replace('[[', '[').replace("__", "**").replace("{CODE}", "\n```").replace("{CODE()}", "```\n")
+    lines[i] = lines[i].replace('[[', '[').replace("__", "**").replace("{CODE}", "\n```").replace("{CODE()}", "\n```\n").replace("~tc~", "<!--").replace("~/tc~", "-->")
     # TODO: If a code block starts with indentation, the indentation should be added for every line of the code block in Markdown.
     # TODO: Make sure closing code blocks always happens on a newline
 
