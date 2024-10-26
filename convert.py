@@ -30,6 +30,7 @@ for i in range(lines_count):
             lines[i] = lines[i][:match.start(1)] + lines[i][match.end(1):match.start(2)] + lines[i][match.end(2):]
         match = search_basic_link()
 
+    print("line[", i, "] = '", lines[i], "'")
     if (match := re.match('^!+', lines[i])) is not None:
         lines[i] = "#" * (match.end() - match.start()) + " " + lines[i][match.end():]
     elif (match := re.match('^\++', lines[i])) is not None:
@@ -38,10 +39,17 @@ for i in range(lines_count):
         lines[i] = "  " * (match.end() - match.start() - 1) + "-" + (" " if lines[i][match.end()] != " " else "") + lines[i][match.end():]
     elif (match := re.match('^\#+', lines[i])) is not None: # numbered list 
         lines[i] = "   " * (match.end() - match.start() - 1) + "1." + (" " if lines[i][match.end()] != " " else "") + lines[i][match.end():]
-
+    elif (match := re.match('^\s*\|\|', lines[i])) is not None: # table
+        lines[i] = "|" + " " + lines[i][match.end():]
+        #print("   Matched ^\s*\|\|") 
+        #print("   Matched: ", lines[i][match.end():])
+    #elif (match := re.match('^\s*\|+\s*$', lines[i])) is not None: # table
+    #elif (match := re.match('[^|]\|\|', lines[i])) is not None: # table
+    #    lines[i] = "" + lines[i][match.end():]#    elif (match := re.match('\|\|', lines[i])) is not None: # table
+#   #     lines[i] = "|" + " " + lines[i][match.end():]
 
 for i in range(lines_count):
-    lines[i] = lines[i].replace('[[', '[').replace("__", "**").replace("{CODE}", "\n```").replace("{CODE()}", "\n```\n").replace("~tc~", "<!--").replace("~/tc~", "-->")
+    lines[i] = lines[i].replace('[[', '[').replace("__", "**").replace("{CODE}", "\n```").replace("{CODE()}", "\n```\n").replace("~tc~", "<!--").replace("~/tc~", "-->").replace("||", "").replace("~np~", "").replace("~/np~", "")
     # TODO: If a code block starts with indentation, the indentation should be added for every line of the code block in Markdown.
     # TODO: Make sure closing code blocks always happens on a newline
 
@@ -54,6 +62,15 @@ for i in range(lines_count):
 | **Conceived by**      | DrOteonu (around May, 2024)                          |
 | **Start date**        |                                                      |
 | **Contributers**      | Kemueira, DrOteonu (DrO), Aeduin, [TODO finish list] |
+
+or:
+
+|**Initiating author**|DrOteonu
+**Conceived by**|DrOteonu (around May, 2024)
+**Start date**|
+**Contributers**|Kemueira, DrOteonu (DrO), Aeduin, [TODO finish list]
+
+
 
 <!-- Original tiki format:
 ||**Initiating author**|DrOteonu
